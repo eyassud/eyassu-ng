@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { ExamplesModule } from './examples/examples.module';
+import { ExamplesModule } from './examples/examples/examples.module';
 
 @NgModule({
   declarations: [AppComponent],

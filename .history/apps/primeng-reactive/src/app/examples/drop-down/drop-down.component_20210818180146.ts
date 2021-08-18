@@ -31,6 +31,8 @@ export class DropDownComponent implements OnInit {
   onChange(event: any) {
     this.selectedCity = this.formGroup.get('dropDown')?.value;
     console.log(JSON.stringify(this.selectedCity));
+    // eslint-disable-next-line no-restricted-syntax
+    console.debug(JSON.stringify(event.value));
   }
 }
 

@@ -27,10 +27,10 @@ export class DropDownComponent implements OnInit {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange(event: any) {
+  onChange(event: Event) {
     this.selectedCity = this.formGroup.get('dropDown')?.value;
     console.log(JSON.stringify(this.selectedCity));
+    console.debug(JSON.stringify(event?.value));
   }
 }
 

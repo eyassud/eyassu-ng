@@ -15,7 +15,7 @@ export class DropDownComponent implements OnInit {
     { name: 'Istanbul', code: 'IST' },
     { name: 'Paris', code: 'PRS' }
   ];
-  selectedCity!: City;
+  selectedCity?: City;
   formGroup!: FormGroup;
 
   constructor(private fb: FormBuilder) { }
@@ -27,10 +27,8 @@ export class DropDownComponent implements OnInit {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange(event: any) {
-    this.selectedCity = this.formGroup.get('dropDown')?.value;
-    console.log(JSON.stringify(this.selectedCity));
+  onChange(event: Event) {
+    console.log(JSON.stringify(event));
   }
 }
 

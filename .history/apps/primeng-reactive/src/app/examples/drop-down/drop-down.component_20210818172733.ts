@@ -8,29 +8,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class DropDownComponent implements OnInit {
 
-  cities: City[] = [
+  cities: City[] =  [
     { name: 'New York', code: 'NY' },
     { name: 'Rome', code: 'RM' },
     { name: 'London', code: 'LDN' },
     { name: 'Istanbul', code: 'IST' },
     { name: 'Paris', code: 'PRS' }
   ];
-  selectedCity!: City;
+  selectedCity?: City;
   formGroup!: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
-    this.formGroup = this.fb.group({
-      dropDown: this.cities[2]
+   this.formGroup = this.fb.group({
+      dropDown: ''
     });
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange(event: any) {
-    this.selectedCity = this.formGroup.get('dropDown')?.value;
-    console.log(JSON.stringify(this.selectedCity));
   }
 }
 
