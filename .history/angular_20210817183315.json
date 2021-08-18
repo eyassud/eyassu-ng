@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "projects": {
+    "primeng-reactive": {
+      "projectType": "application",
+      "root": "apps/primeng-reactive",
+      "sourceRoot": "apps/primeng-reactive/src",
+      "prefix": "eyassu-ng",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/primeng-reactive",
+            "index": "apps/primeng-reactive/src/index.html",
+            "main": "apps/primeng-reactive/src/main.ts",
+            "polyfills": "apps/primeng-reactive/src/polyfills.ts",
+            "tsConfig": "apps/primeng-reactive/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/primeng-reactive/src/favicon.ico",
+              "apps/primeng-reactive/src/assets"
+            ],
+            "styles": [
+              "apps/primeng-reactive/src/styles.scss",
+              "./node_modules/primeflex/primeflex.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/primeng-reactive/src/environments/environment.ts",
+                  "with": "apps/primeng-reactive/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "primeng-reactive:build:production"
+            },
+            "development": {
+              "browserTarget": "primeng-reactive:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "primeng-reactive:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/primeng-reactive/src/**/*.ts",
+              "apps/primeng-reactive/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/primeng-reactive"],
+          "options": {
+            "jestConfig": "apps/primeng-reactive/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "primeng-reactive-e2e": {
+      "root": "apps/primeng-reactive-e2e",
+      "sourceRoot": "apps/primeng-reactive-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/primeng-reactive-e2e/cypress.json",
+            "tsConfig": "apps/primeng-reactive-e2e/tsconfig.e2e.json",
+            "devServerTarget": "primeng-reactive:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "primeng-reactive:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/primeng-reactive-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "primeng-reactive"
+}
