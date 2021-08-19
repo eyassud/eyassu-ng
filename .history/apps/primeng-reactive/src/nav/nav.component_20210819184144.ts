@@ -19,11 +19,11 @@ export class NavComponent implements OnInit {
     this.items = [
       { label: 'Home', icon: 'pi pi-home', routerLink: ['/home'] },
       {
-        label: 'Examples', expanded: false,
+        label: 'Examples', icon: 'pi pi-bell',
         items: [
-          { label: 'Drop Down', routerLink: ['/dropdown'] },
-          { label: 'Grid', routerLink: ['/grid'] }
-        ]
+          {label: 'New', icon: 'pi pi-fw pi-plus'},
+          {label: 'Download', icon: 'pi pi-fw pi-download'}
+      ]
       }
 
     ];

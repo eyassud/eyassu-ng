@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from '../nav/nav.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,7 +17,6 @@ const routes: Routes = [
   declarations: [AppComponent, HomeComponent, NavComponent],
   imports: [
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
     PanelMenuModule

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from '../nav/nav.component';
-import { PanelMenuModule } from 'primeng/panelmenu';
+import { MenuModule } from 'primeng/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
@@ -21,7 +21,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
-    PanelMenuModule
+    MenuModule
   ],
   providers: [],
   bootstrap: [AppComponent],

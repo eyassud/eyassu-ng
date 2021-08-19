@@ -17,14 +17,11 @@ export class NavComponent implements OnInit {
     this.title = this.titleService.getTitle();
 
     this.items = [
-      { label: 'Home', icon: 'pi pi-home', routerLink: ['/home'] },
-      {
-        label: 'Examples', expanded: false,
+      { label: 'Home', icon: 'pi pi-home', routerLink: ['/home']},
+      { label: 'Examples', icon: 'pi pi-home',
         items: [
-          { label: 'Drop Down', routerLink: ['/dropdown'] },
-          { label: 'Grid', routerLink: ['/grid'] }
-        ]
-      }
+          { label: 'Grid', icon: 'pi pi-home', routerLink: ['/grid']}
+        ] }
 
     ];
   }
