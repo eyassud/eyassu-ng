@@ -1,0 +1,15 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.container {
+   @apply m-4 bg-gray-100 shadow-lg border-2 rounded-lg hover:border-blue-400
+}
+
+.container-label {
+  @apply font-bold text-xl
+}
+
+.container-control {
+  @apply mt-4 ml-4 w-full
+}

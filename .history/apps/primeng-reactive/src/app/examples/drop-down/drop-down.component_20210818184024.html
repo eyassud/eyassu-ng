@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+  <div class="container">
+    <div class="p-4">
+      <h3 class="container-label">Drop Down</h3>
+      <p-dropdown optionLabel="name" styleClass=" w-72" formControlName="dropDown" [options]="cities"
+       (onChange)="onChange($event)">
+      </p-dropdown>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,15 @@
+<div class="relative min-h-screen flex">
+  <div class="bg-blue-800 text-blue-100 w-64">
+    <a href="#">
+
+      <span>{{title}}</span>
+    </a>
+    <nav>
+      <button routerLink="/dropdown">DropDown</button>
+      <button routerLink="/grid">Grid</button>
+    </nav>
+  </div>
+  <div class="flex-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>
