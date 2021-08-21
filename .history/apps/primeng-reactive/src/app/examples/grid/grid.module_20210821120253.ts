@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { GridExComponent } from './grid.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ProductService } from './product.service';
 import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -19,8 +19,9 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes),
+    FormsModule,
     HttpClientModule,
-    SharedModule,
+    ReactiveFormsModule,
     TableModule
   ],
   exports: [

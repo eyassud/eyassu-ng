@@ -21,7 +21,7 @@ const routes: Routes = [
     SharedModule
   ],
   exports: [
-    DropDownExComponent
+    DropDownExComponent, SharedModule
   ],
   providers: []
 })

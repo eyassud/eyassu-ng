@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router'
@@ -6,12 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from '../nav/nav.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'dropdown', loadChildren: () => import('./examples/drop-down/drop-down.module').then(m => m.DropDownExModule) },
-  { path: 'grid', loadChildren: () => import('./examples/grid/grid.module').then(m => m.GridExModule) },
+  { path: 'grid', loadChildren: () => import('./examples/grid/grid.module').then(m => m.GridModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]
 @NgModule({
@@ -20,8 +20,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     BrowserModule,
-    PanelMenuModule,
-    SharedModule
+    CommonModule,
+    PanelMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent],

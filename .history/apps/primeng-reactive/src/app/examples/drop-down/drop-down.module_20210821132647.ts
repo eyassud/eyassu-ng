@@ -3,6 +3,7 @@ import { DropDownExComponent } from './drop-down.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     DropdownModule,
-    SharedModule
+    SharedModule, ReactiveFormsModule, FormsModule
   ],
   exports: [
     DropDownExComponent

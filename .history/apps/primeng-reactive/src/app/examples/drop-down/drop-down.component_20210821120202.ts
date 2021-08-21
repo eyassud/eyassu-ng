@@ -15,7 +15,7 @@ export class DropDownExComponent implements OnInit {
     { name: 'Istanbul', code: 'IST' },
     { name: 'Paris', code: 'PRS' }
   ];
-
+  selectedCity!: City;
   formGroup!: FormGroup;
 
   constructor(private fb: FormBuilder) { }
@@ -23,15 +23,14 @@ export class DropDownExComponent implements OnInit {
   ngOnInit(): void {
 
     this.formGroup = this.fb.group({
-      dropDown: this.cities[2] // preselect a value
+      dropDown: this.cities[2]
     });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange(event: Event) {
-    // Obtain selected value
-    const selectedCity = this.formGroup.get('dropDown')?.value;
-    console.log(JSON.stringify(selectedCity));
+    this.selectedCity = this.formGroup.get('dropDown')?.value;
+    console.log(JSON.stringify(this.selectedCity));
   }
 }
 

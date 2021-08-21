@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GridExComponent } from './grid.component';
+import { DropDownComponent } from './drop-down.component';
 
-describe('GridComponent', () => {
-  let component: GridExComponent;
-  let fixture: ComponentFixture<GridExComponent>;
+describe('DropDownComponent', () => {
+  let component: DropDownComponent;
+  let fixture: ComponentFixture<DropDownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GridExComponent ]
+      declarations: [ DropDownComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GridExComponent);
+    fixture = TestBed.createComponent(DropDownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
