@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FilterService } from 'primeng/api';
 import { CountryService } from '@eyassu-ng/data-access-json';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'eyassu-ng-auto-complete-ex',
@@ -9,22 +9,20 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AutoCompleteExComponent implements OnInit {
 
-  formGroup!: FormGroup;
+  selectedCountry: any;
+
   countries!: any[];
+
   filteredCountries!: any[];
 
   constructor(
     private readonly countryService: CountryService,
-    private readonly fb: FormBuilder) { }
+    private readonly filterService: FilterService) { }
 
   ngOnInit(): void {
     this.countryService.getCountries().then(countries => {
       this.countries = countries;
     });
-
-    this.formGroup = this.fb.group({
-      'autoComplete': {"name":"United States","code":"US"} // Prepopulate value
-    })
   }
 
   filterCountry(event: any) {
@@ -43,7 +41,6 @@ export class AutoCompleteExComponent implements OnInit {
   }
 
   onSelect(value: any) {
-    const selectedCountry = this.formGroup.get('autoComplete')?.value;
-    console.log(JSON.stringify(selectedCountry));
+    console.log(JSON.stringify(value));
   }
 }

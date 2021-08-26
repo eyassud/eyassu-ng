@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="p-4">
+    <h3 class="container-label">Auto Complete</h3>
+    <p-autoComplete [(ngModel)]="selectedCountry" [suggestions]="filteredCountries" formControlName="autoComplete"
+      (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+  </div>
+</div>

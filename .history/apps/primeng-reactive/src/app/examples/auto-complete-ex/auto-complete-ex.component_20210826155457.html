@@ -1,7 +1,7 @@
 <div class="container" [formGroup]="formGroup">
   <div class="p-4">
     <h3 class="container-label">Auto Complete</h3>
-    <p-autoComplete [suggestions]="filteredCountries" formControlName="autoComplete"
+    <p-autoComplete [(ngModel)]="selectedCountry" [suggestions]="filteredCountries" formControlName="autoComplete"
       (completeMethod)="filterCountry($event)" field="name" [minLength]="1" (onSelect)="onSelect($event)"></p-autoComplete>
   </div>
 </div>

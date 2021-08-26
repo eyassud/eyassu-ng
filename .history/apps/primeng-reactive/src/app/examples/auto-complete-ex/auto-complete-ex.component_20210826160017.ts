@@ -10,7 +10,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AutoCompleteExComponent implements OnInit {
 
   formGroup!: FormGroup;
+  selectedCountry: any;
+
   countries!: any[];
+
   filteredCountries!: any[];
 
   constructor(
@@ -23,7 +26,7 @@ export class AutoCompleteExComponent implements OnInit {
     });
 
     this.formGroup = this.fb.group({
-      'autoComplete': {"name":"United States","code":"US"} // Prepopulate value
+      'autoComplete': {"name":"United States","code":"US"}
     })
   }
 
@@ -43,7 +46,7 @@ export class AutoCompleteExComponent implements OnInit {
   }
 
   onSelect(value: any) {
-    const selectedCountry = this.formGroup.get('autoComplete')?.value;
-    console.log(JSON.stringify(selectedCountry));
+    this.selectedCountry = this.formGroup.get('autoComplete')?.value;
+    console.log(JSON.stringify(this.selectedCountry));
   }
 }

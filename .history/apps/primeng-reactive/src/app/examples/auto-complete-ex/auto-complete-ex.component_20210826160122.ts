@@ -44,6 +44,6 @@ export class AutoCompleteExComponent implements OnInit {
 
   onSelect(value: any) {
     const selectedCountry = this.formGroup.get('autoComplete')?.value;
-    console.log(JSON.stringify(selectedCountry));
+    console.log(JSON.stringify(this.selectedCountry));
   }
 }
