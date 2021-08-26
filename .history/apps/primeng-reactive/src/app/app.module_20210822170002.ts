@@ -20,11 +20,11 @@ const routes: Routes = [
   declarations: [AppComponent, HomeComponent, NavComponent],
   imports: [
     RouterModule.forRoot(routes),
-    AutoCompleteExModule,
     BrowserAnimationsModule,
     BrowserModule,
     PanelMenuModule,
-    SharedModule
+    SharedModule,
+    AutoCompleteExModule
   ],
   providers: [],
   bootstrap: [AppComponent],

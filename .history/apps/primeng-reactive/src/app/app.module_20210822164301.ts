@@ -11,7 +11,7 @@ import { AutoCompleteExModule } from './examples/auto-complete-ex/auto-complete-
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'autocomplete', loadChildren: () => import('./examples/auto-complete-ex/auto-complete-ex.module').then(m => m.AutoCompleteExModule) },
+  { path: 'autocomplete', loadChildren: () => import('./examples/auto-complete-ex/auto-complete-ex.module').then(m => m.AutoCompleteExModule) }
   { path: 'dropdown', loadChildren: () => import('./examples/drop-down/drop-down.module').then(m => m.DropDownExModule) },
   { path: 'grid', loadChildren: () => import('./examples/grid/grid.module').then(m => m.GridExModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,11 +20,11 @@ const routes: Routes = [
   declarations: [AppComponent, HomeComponent, NavComponent],
   imports: [
     RouterModule.forRoot(routes),
-    AutoCompleteExModule,
     BrowserAnimationsModule,
     BrowserModule,
     PanelMenuModule,
-    SharedModule
+    SharedModule,
+    AutoCompleteExModule
   ],
   providers: [],
   bootstrap: [AppComponent],
