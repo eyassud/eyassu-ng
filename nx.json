@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "data-access-json": {
+      "tags": []
+    },
     "primeng-reactive": {
       "tags": []
     },

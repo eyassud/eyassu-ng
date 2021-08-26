@@ -3,7 +3,7 @@ import { DropDownExComponent } from './drop-down.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { DropdownModule } from 'primeng/dropdown';
-import { DataAccessJsonModule } from '@eyassu-ng/data-access-json';
+import {} from '@eyassu-ng/data-access-json';
 
 const routes: Routes = [
   {
@@ -18,7 +18,6 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes),
-    DataAccessJsonModule,
     DropdownModule,
     SharedModule
   ],

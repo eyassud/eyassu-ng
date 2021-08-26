@@ -1,6 +1,31 @@
 {
   "version": 1,
   "projects": {
+    "data-access-json": {
+      "projectType": "library",
+      "root": "libs/data-access-json",
+      "sourceRoot": "libs/data-access-json/src",
+      "prefix": "eyassu-ng",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access-json"],
+          "options": {
+            "jestConfig": "libs/data-access-json/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-access-json/src/**/*.ts",
+              "libs/data-access-json/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "primeng-reactive": {
       "projectType": "application",
       "root": "apps/primeng-reactive",

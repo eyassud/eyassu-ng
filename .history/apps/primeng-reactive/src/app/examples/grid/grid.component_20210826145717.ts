@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, ProductService } from '@eyassu-ng/data-access-json';
+import { Product } from '@eyassu-ng/data-access-json/lib/Product';
+import { ProductService } from '@eyassu-ng/data-access-json';
 
 @Component({
   selector: 'eyassu-ng-grid',
