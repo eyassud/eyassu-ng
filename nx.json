@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "app-demo-simple": {
+      "tags": []
+    },
     "data-access-json": {
       "tags": []
     },

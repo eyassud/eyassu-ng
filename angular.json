@@ -1,6 +1,99 @@
 {
   "version": 1,
   "projects": {
+    "app-demo-simple": {
+      "projectType": "application",
+      "root": "apps/app-demo-simple",
+      "sourceRoot": "apps/app-demo-simple/src",
+      "prefix": "eyassu-ng",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/app-demo-simple",
+            "index": "apps/app-demo-simple/src/index.html",
+            "main": "apps/app-demo-simple/src/main.ts",
+            "polyfills": "apps/app-demo-simple/src/polyfills.ts",
+            "tsConfig": "apps/app-demo-simple/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/app-demo-simple/src/favicon.ico",
+              "apps/app-demo-simple/src/assets"
+            ],
+            "styles": ["apps/app-demo-simple/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/app-demo-simple/src/environments/environment.ts",
+                  "with": "apps/app-demo-simple/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "app-demo-simple:build:production"
+            },
+            "development": {
+              "browserTarget": "app-demo-simple:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app-demo-simple:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app-demo-simple/src/**/*.ts",
+              "apps/app-demo-simple/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/app-demo-simple"],
+          "options": {
+            "jestConfig": "apps/app-demo-simple/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "data-access-json": {
       "projectType": "library",
       "root": "libs/data-access-json",
