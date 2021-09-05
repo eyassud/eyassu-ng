@@ -1,0 +1,51 @@
+<form #theForm="ngForm" (submit)="onSubmit(theForm)" novalidate>
+  <div class="container">
+
+    <div class="pt-20 pl-32 ">
+      <h3 class="container-label">Example - Simple</h3>
+
+      <div class="border-2 border-grey-200 m-5 p-5 rounded ">
+        <div class="ml-10 mt-10">
+          <div class="font-medium italic">
+            <label for="decision">Are you traveling to a country?</label>
+          </div>
+          <ul id="menu" class="m-2">
+            <li *ngFor="let decision of decisions">
+              <input type="radio" name="{{decision.key}}" class="ml-7" value="{{decision.key}}"
+                (change)="onDecisionChange(decision)" [(ngModel)]="tripModel.decision" />
+              <span class="ml-1">{{decision.name}}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="ml-10 mt-10" *ngIf="countryRequired">
+          <div class="font-medium italic">
+            <label for="countries">Which country?</label>
+          </div>
+          <select id="countries"  name="country" [(ngModel)]="tripModel.country"  (ngModelChange)="onCountryChange(country)" #country class="rounded w-72">
+            <option [ngValue]="null" disabled selected></option>
+            <option *ngFor="let country of countries" [ngValue]="country.code">{{country.name}}</option>
+          </select>
+          <span class="text-red-600 pl-2" *ngIf="countryRequired">*</span>
+        </div>
+
+        <div class="ml-10 mt-10" *ngIf="explanationRequired">
+          <div class="mb-3 font-medium italic">
+            <label for="explanation">Please explain why you selected 'Other'</label>
+            <span class="text-red-600  pl-2" *ngIf="explanationRequired">*</span>
+          </div>
+          <textarea id="explanation" rows="5" cols="60" class="rounded" [required]="explanationRequired"></textarea>
+        </div>
+
+        <div class="ml-10 mt-10 border-t pt-5 border-grey-200">
+          <button type="submit" class="btn" [ngClass]="{'btn-disabled' : !btSaveEnabled}">Save</button>
+          <button type="button" class="btn" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</form>
+
+{{ tripModel | json}}

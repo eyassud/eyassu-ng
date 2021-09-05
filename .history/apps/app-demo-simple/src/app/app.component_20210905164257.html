@@ -1,0 +1,61 @@
+<form #theForm="ngForm" (submit)="onSubmit(theForm)" novalidate>
+  <div class="container">
+
+    <div class="pt-20 pl-32 ">
+      <h3 class="container-label">Example - Simple</h3>
+
+      <div class="border-2 border-grey-200 m-5 p-5 rounded ">
+        <div class="ml-10 mt-10">
+          <div class="font-medium italic">
+            <label for="decision">Are you traveling to a country?</label>
+          </div>
+          <ul id="menu" class="m-2">
+            <li *ngFor="let decision of decisions">
+              <input type="radio" name="decision" class="ml-7" value="{{decision.key}}" required
+                (ngModelChange)="onDecisionChange(decision)" [(ngModel)]="tripModel.decision" />
+              <span class="ml-1">{{decision.name}}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="ml-10 mt-10" *ngIf="countryRequired">
+          <div class="font-medium italic">
+            <label for="countries">Which country?</label>
+            <span class="text-red-600 pl-2" *ngIf="countryRequired">*</span>
+          </div>
+          <select id="countries" name="country" [(ngModel)]="tripModel.country"
+            (ngModelChange)="onCountryChange($event)" class="rounded w-72" required>
+            <option [ngValue]="null" disabled selected></option>
+            <option *ngFor="let country of countries" [ngValue]="country.code">{{country.name}}</option>
+          </select>
+
+        </div>
+
+        <div class="ml-10 mt-10" *ngIf="explanationRequired">
+          <div class="mb-3 font-medium italic">
+            <label for="explanation">Please explain why you selected 'Other'</label>
+            <span class="text-red-600  pl-2" *ngIf="explanationRequired">*</span>
+          </div>
+          <textarea id="explanation" name="explanation" rows="5" cols="60" class="rounded"
+            required [(ngModel)]="tripModel.explanation"></textarea>
+        </div>
+
+        <div class="ml-10 mt-10 border-t pt-5 border-grey-200">
+          <button type="submit" class="btn" [disabled]="!theForm.valid" [ngClass]="{'btn-disabled' : !theForm.valid}">Save</button>
+          <button type="button" class="btn" (click)="onClear()">Clear</button>
+        </div>
+
+        <div class="ml-10 mt-10 text-sm">
+          <code>{{ tripModel | json}}</code>
+        </div>
+        <div class="ml-10 mt-10 text-sm">
+          <code>Valid: {{ theForm.valid | json}}</code><br/>
+          <code>Touched: {{ theForm.touched | json}}</code><br/>
+          <code>Dirty: {{ theForm.dirty | json}}</code>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</form>

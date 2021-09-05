@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="pt-20 pl-32">
+    <h3 class="container-label">Example - Simple</h3>
+    <ul id="menu" class="pt-5">
+      <li *ngFor="let decision of decisions">
+        <span>Do you want to select a country?</span>
+        <input type="radio" [(ngModel)]="selectedDecision" name="decision" value="{{decision.key}}" class="ml-7"/>
+        <span class="ml-1">{{decision.name}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

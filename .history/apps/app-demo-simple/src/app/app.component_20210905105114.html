@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="pt-20 pl-32">
+    <h3 class="container-label">Example - Simple</h3>
+    <ul id="menu" class="pt-5">
+      <li *ngFor="let category of categories">
+        <input type="radio" [(ngModel)]="selectedCategory" name="category" value="{{category.key}}" class="ml-7"/>
+        <span class="ml-1">{{category.name}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

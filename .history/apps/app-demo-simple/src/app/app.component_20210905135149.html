@@ -1,0 +1,42 @@
+<form>
+  <div class="container">
+
+    <div class="pt-20 pl-32">
+      <h3 class="container-label">Example - Simple</h3>
+
+      <div class="ml-10 mt-10">
+        <label for="decision">Do you want to select a country?</label>
+        <ul id="menu" class="pt-5">
+          <li *ngFor="let decision of decisions">
+            <input type="radio" [(ngModel)]="selectedDecision" name="decision" value="{{decision.key}}" class="ml-7"
+              (change)="onDecisionChange(decision)" />
+            <span class="ml-1">{{decision.name}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ml-10 mt-10 justify-center">
+        <select id="countries" (change)="onCountryChange(country.value)" #country class="rounded">
+          <option [ngValue]="null" disabled selected></option>
+          <option *ngFor="let country of countries" [ngValue]="country.code">{{country.name}}</option>
+        </select>
+        <span class="text-red-600 text-2xl pl-2" *ngIf="countryRequired">*</span>
+      </div>
+
+      <div class="ml-10 mt-10">
+        <div class="h-12">
+          <label for="explanation" >Explain why country is not required</label>
+        <span class="text-red-600 text-2xl pl-2" *ngIf="countryRequired">*</span>
+        </div>
+        <textarea id="explanation" rows="10" cols="100"></textarea>
+      </div>
+
+      <div class="ml-10 mt-40">
+        <button class="btn" [ngClass]="{'btn-disabled' : !btSaveEnabled}">Save</button>
+        <button class="btn" (click)="onClear()">Clear</button>
+      </div>
+
+    </div>
+
+  </div>
+</form>

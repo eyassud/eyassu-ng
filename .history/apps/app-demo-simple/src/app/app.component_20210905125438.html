@@ -1,0 +1,35 @@
+<form>
+  <div class="container">
+
+    <div class="pt-20 pl-32">
+      <h3 class="container-label">Example - Simple</h3>
+
+      <div class="ml-10 mt-10">
+        <label for="decision">Do you want to select a country?</label>
+        <ul id="menu" class="pt-5">
+          <li *ngFor="let decision of decisions">
+            <input type="radio" [(ngModel)]="selectedDecision" name="decision" value="{{decision.key}}" class="ml-7"
+              (change)="onDecisionChange(decision)" />
+            <span class="ml-1">{{decision.name}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ml-10 mt-10">
+
+        <select id="countries" (change)="onCountryChange(country.value)" #country class="rounded">
+          <option [ngValue]="null" disabled selected>Select Country</option>
+          <option *ngFor="let country of countries" [ngValue]="country.code">{{country.name}}</option>
+        </select>
+        <span class="text-red-600 text-2xl pl-2" *ngIf="countryRequired">*</span>
+      </div>
+
+      <div class="ml-10 mt-10">
+        <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled>Save</button>
+        <button type="button">Clear</button>
+      </div>
+
+    </div>
+
+  </div>
+</form>

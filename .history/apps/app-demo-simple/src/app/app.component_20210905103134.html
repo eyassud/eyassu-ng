@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="p-4">
+    <h3 class="container-label">Grid</h3>
+    <div *ngFor="let category of categories">
+      <p-radioButton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="selectedCategory"
+        [disabled]="category.key === 'R'" [label]="category.key"></p-radioButton>
+      <!-- <label [for]="category.key">{{category.name}}</label> -->
+    </div>
+  </div>
+</div>

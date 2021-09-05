@@ -1,0 +1,13 @@
+
+
+<div class="container">
+  <div class="p-4">
+    <h3 class="container-label">Grid</h3>
+<ul id="menu">
+  <li  *ngFor="let item of categories">
+    <input type="radio" [(ngModel)]="selectedCategory" name="list_name" value="{{item.value}} "/>
+    {{item.name}}
+
+  </li>
+</ul>
+</div></div>

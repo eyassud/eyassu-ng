@@ -1,0 +1,8 @@
+
+    <!-- <h3 class="container-label">Example - Simple</h3> -->
+    <div *ngFor="let category of categories" style="width:400px">
+      <p-radioButton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="selectedCategory"
+        [disabled]="category.key === 'R'"></p-radioButton>
+      <label [for]="category.key">{{category.name}}</label>
+    <!-- </div> -->
+

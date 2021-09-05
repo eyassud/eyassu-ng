@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="pt-20 pl-32">
+    <h3 class="container-label">Example - Simple</h3>
+
+    <div class="ml-10 mt-10">
+      <label for="decision">Do you want to select a country?</label>
+      <ul id="menu" class="pt-5">
+        <li *ngFor="let decision of decisions">
+          <input type="radio" [(ngModel)]="selectedDecision" name="decision" value="{{decision.key}}" class="ml-7" (change) ="onDecisionChange($event)" />
+          <span class="ml-1">{{decision.name}}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="ml-10 mt-10" *ngIf="displayCountryCtrl">
+      <div class="pt-10">Select a country</div>
+      <select>
+        <option [ngValue]="null" disabled>Select Country</option>
+        <option *ngFor="let country of countries" [ngValue]="country.code">{{country.name}}</option>
+      </select>
+    </div>
+  </div>
+
+</div>
