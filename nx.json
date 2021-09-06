@@ -27,6 +27,13 @@
     ]
   },
   "projects": {
+    "app-demo-advanced": {
+      "tags": []
+    },
+    "app-demo-advanced-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app-demo-advanced"]
+    },
     "app-demo-simple": {
       "tags": []
     },

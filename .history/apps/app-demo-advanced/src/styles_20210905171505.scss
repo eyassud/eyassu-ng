@@ -1,0 +1,19 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.container {
+  @apply m-4
+}
+
+.container-label {
+  @apply font-bold text-xl;
+}
+
+.container-control {
+  @apply mt-4 ml-4;
+}
+
+ul#menu li {
+  display:inline;
+}
