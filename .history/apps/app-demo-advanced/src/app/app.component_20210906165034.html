@@ -1,0 +1,20 @@
+<form formGroup="formGroup">
+  <div class="container">
+
+    <div class="pt-20 pl-32">
+      <h3 class="container-label">Example - Advanced</h3>
+
+      <div class="border-2 border-grey-200 m-5 p-5 rounded">
+        <ng-container *ngIf="viewModel.travelTypeComponent$ | async">
+          <eyassu-ng-choice formControlName="travelType"></eyassu-ng-choice>
+        </ng-container>
+
+        <ng-container *ngIf="viewModel.destinationComponent$ | async">
+          <eyassu-ng-drop-down formControlName="destination"></eyassu-ng-drop-down>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+
+</form>

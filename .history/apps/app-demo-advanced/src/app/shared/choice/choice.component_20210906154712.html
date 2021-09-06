@@ -1,0 +1,15 @@
+
+  <div class="ml-10 mt-10" *ngIf="value?.configuration?.visible">
+    <div class="font-medium italic">
+      <label for="decision">{{ value?.label }}</label>
+      <span class="text-red-600 pl-2" *ngIf="value?.configuration?.required">*</span>
+    </div>
+    <ul id="menu" class="m-2">
+      <li *ngFor="let decision of value?.choices">
+        <input type="radio" name="decision" class="ml-7" value="{{decision.value}}" (change)="onDecisionChange($event)"/>
+        <span class="ml-1">{{decision.label}}</span>
+      </li>
+    </ul>
+  </div>
+
+

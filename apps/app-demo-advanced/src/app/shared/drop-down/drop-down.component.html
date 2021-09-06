@@ -1,0 +1,10 @@
+<div class="ml-10 mt-10"  *ngIf="value?.configuration?.visible">
+  <div class="font-medium italic">
+    <label for="choices">{{ value?.label }}</label>
+    <span class="text-red-600 pl-2" *ngIf="value?.configuration?.required">*</span>
+  </div>
+  <select id="choices" name="choices" (change)="onDropDownChange($event)" class="rounded w-72" [required]="value?.configuration?.required">
+    <option disabled selected></option>
+    <option *ngFor="let choice of value?.choices" [ngValue]="choice.value">{{choice.label}}</option>
+  </select>
+</div>

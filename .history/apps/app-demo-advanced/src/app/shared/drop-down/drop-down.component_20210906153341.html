@@ -1,0 +1,11 @@
+<div class="ml-10 mt-10"  *ngIf="value?.configuration?.visible">
+  <div class="font-medium italic">
+    <label for="countries">{{ value?.configuration?.label }}</label>
+    <span class="text-red-600 pl-2" *ngIf="value?.configuration?.required">*</span>
+  </div>
+  <select id="choices" name="choices" formControlName="choices"
+    (onChange)="onDropDownChange($event)" class="rounded w-72" required>
+    <option disabled selected></option>
+    <option *ngFor="let country of value?.choices" [ngValue]="country.code">{{country.name}}</option>
+  </select>
+</div>

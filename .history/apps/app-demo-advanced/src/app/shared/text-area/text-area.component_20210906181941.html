@@ -1,0 +1,8 @@
+<div class="ml-10 mt-10" *ngIf="value?.configuration.visible">
+  <div class="mb-3 font-medium italic">
+    <label for="explanation">{{ value?.label }}</label>
+    <span class="text-red-600  pl-2" *ngIf="value?.configuration.required">*</span>
+  </div>
+  <textarea id="explanation" name="explanation" rows="5" cols="60" class="rounded" [required]="value?.configuration.required"
+    ></textarea>
+</div>

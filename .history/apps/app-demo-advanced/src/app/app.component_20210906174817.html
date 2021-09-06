@@ -1,0 +1,29 @@
+<form [formGroup]="formGroup">
+  <div class="container">
+
+    <div class="pt-20 pl-32">
+      <h3 class="container-label">Example - Advanced</h3>
+
+      <div class="border-2 border-grey-200 m-5 p-5 rounded">
+        <ng-container *ngIf="viewModel.travelTypeComponent$ | async">
+          <eyassu-ng-choice formControlName="travelType"></eyassu-ng-choice>
+        </ng-container>
+
+        <ng-container *ngIf="viewModel.destinationComponent$ | async">
+          <eyassu-ng-drop-down formControlName="destination"></eyassu-ng-drop-down>
+        </ng-container>
+
+        <div class="ml-10 mt-10 text-sm">
+          <code>{{ formGroup | json}}</code>
+        </div>
+        <div class="ml-10 mt-10 text-sm">
+          <code>Valid: {{ formGroup.valid | json}}</code><br />
+          <code>Touched: {{ formGroup.touched | json}}</code><br />
+          <code>Dirty: {{ formGroup.dirty | json}}</code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</form>
