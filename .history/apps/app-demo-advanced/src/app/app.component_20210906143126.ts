@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { asapScheduler, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import * as AppActionTypes from '../app/state/app.actions';
 import { Decision } from './model/decision';
 import { Choice } from './shared/choice/choice';
@@ -40,12 +40,14 @@ export class AppComponent implements OnInit {
     this.viewModel = {
       decisionComponent$: this.store.select(AppSelectors.getDecisionComponent())
         .pipe(
+          //filter((choiceData: ChoiceData) => choiceData !== undefined && choiceData != null && Object.keys(choiceData).length > 0),
           tap((choiceData: ChoiceData) => this.getFormControl('decision')?.setValue(choiceData))
         )
     }
 
     this.getFormControl('decision')?.valueChanges
       .pipe(
+        //filter((choice: Choice) => choice !== undefined && Object.keys(choice).length > 0),
         map((choice: Choice) => { return { name: choice.label, key: choice.value }})
       )
       .subscribe(

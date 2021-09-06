@@ -1,0 +1,7 @@
+
+<form [formGroup]="formGroup">
+  <ng-container *ngIf="viewModel.decisionComponent$ | async">
+    <eyassu-ng-choice #decision formControlName="decision"></eyassu-ng-choice>
+  </ng-container>>
+</form>
+

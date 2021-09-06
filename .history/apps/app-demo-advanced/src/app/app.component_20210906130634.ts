@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { asapScheduler, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import * as AppActionTypes from '../app/state/app.actions';
-import { Decision } from './model/decision';
-import { Choice } from './shared/choice/choice';
 import { ChoiceData } from './shared/choice/choice-data';
 import { AppSelectors } from './state/app.selectors';
 
 export interface ViewModel {
-  decisionComponent$: Observable<ChoiceData>;
+  choiceComponent$: Observable<ChoiceData>;
 }
 
 @Component({
@@ -35,24 +33,13 @@ export class AppComponent implements OnInit {
       decision: new FormControl(undefined)
     });
 
-    asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.Load()));
+    this.store.dispatch(new AppActionTypes.Load());
 
     this.viewModel = {
-      decisionComponent$: this.store.select(AppSelectors.getDecisionComponent())
+      choiceComponent$: this.store.select(AppSelectors.getDecisionComponent())
         .pipe(
-          tap((choiceData: ChoiceData) => this.getFormControl('decision')?.setValue(choiceData))
+          tap((choiceData: ChoiceData) => this.formGroup.get('decision')?.setValue(choiceData))
         )
     }
-
-    this.getFormControl('decision')?.valueChanges
-      .pipe(
-        map((choice: Choice) => { return { name: choice.label, key: choice.value }})
-      )
-      .subscribe(
-        (decision: Decision) =>  asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.UpdateDecision(decision))));
-  }
-
-  getFormControl(name: string) {
-    return this.formGroup.get(name);
   }
 }

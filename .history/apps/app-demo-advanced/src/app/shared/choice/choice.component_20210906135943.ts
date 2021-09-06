@@ -50,6 +50,6 @@ export class ChoiceComponent implements OnInit, ControlValueAccessor {
 
   onDecisionChange(event: any): void {
     const selectedValue = this.value?.choices.find(c => c.value === event.target.value);
-    this.onChange(selectedValue);
+    //this.onChange(selectedValue);
   }
 }

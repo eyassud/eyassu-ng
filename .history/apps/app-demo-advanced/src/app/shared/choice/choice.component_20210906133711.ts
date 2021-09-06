@@ -23,9 +23,9 @@ export class ChoiceComponent implements OnInit, ControlValueAccessor {
 
   constructor() { }
 
-  // setConfiguration(value: ChoiceData): void {
-  //   this.value = value;
-  // }
+  setConfiguration(value: ChoiceData): void {
+    this.value = value;
+  }
 
 
   writeValue(value: any): void {
@@ -48,7 +48,7 @@ export class ChoiceComponent implements OnInit, ControlValueAccessor {
 
   }
 
-  onDecisionChange(event: any): void {
+  onDecisionChange(event: Event): void {
     const selectedValue = this.value?.choices.find(c => c.value === event.target.value);
     this.onChange(selectedValue);
   }

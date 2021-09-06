@@ -1,14 +1,14 @@
 
-  <div class="ml-10 mt-10" *ngIf="value?.configuration?.visible">
+  <div class="ml-10 mt-10">
     <div class="font-medium italic">
       <label for="decision">Are you traveling to a country?</label>
     </div>
     <ul id="menu" class="m-2">
       <li *ngFor="let decision of value?.choices">
-        <input type="radio" name="decision" class="ml-7" value="{{decision.value}}" (change)="onDecisionChange($event)"/>
+        <input type="radio" name="decision" class="ml-7" value="{{decision.value}}" />
         <span class="ml-1">{{decision.label}}</span>
       </li>
     </ul>
   </div>
 
-
+  {{value | json }}

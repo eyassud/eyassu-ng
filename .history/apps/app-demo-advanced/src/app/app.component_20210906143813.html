@@ -6,7 +6,7 @@
 
       <div class="border-2 border-grey-200 m-5 p-5 rounded">
         <ng-container *ngIf="viewModel.decisionComponent$ | async">
-          <eyassu-ng-choice formControlName="decision"></eyassu-ng-choice>
+          <eyassu-ng-choice #decision formControlName="decision"></eyassu-ng-choice>
         </ng-container>
       </div>
     </div>

@@ -21,11 +21,12 @@ export class ChoiceComponent implements OnInit, ControlValueAccessor {
   onChange: any = () => { }
   onTouch: any = () => { }
 
-  constructor() { }
+  constructor() {
+  }
 
-  // setConfiguration(value: ChoiceData): void {
-  //   this.value = value;
-  // }
+  setConfiguration(value: ChoiceData): void {
+    this.value = value;
+  }
 
 
   writeValue(value: any): void {
@@ -46,10 +47,5 @@ export class ChoiceComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
 
-  }
-
-  onDecisionChange(event: any): void {
-    const selectedValue = this.value?.choices.find(c => c.value === event.target.value);
-    this.onChange(selectedValue);
   }
 }

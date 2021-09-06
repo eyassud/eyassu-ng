@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { asapScheduler, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { distinctUntilChanged, filter, map, tap } from 'rxjs/operators';
 import * as AppActionTypes from '../app/state/app.actions';
 import { Decision } from './model/decision';
 import { Choice } from './shared/choice/choice';
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       decision: new FormControl(undefined)
     });
 
-    asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.Load()));
+    this.store.dispatch(new AppActionTypes.Load());
 
     this.viewModel = {
       decisionComponent$: this.store.select(AppSelectors.getDecisionComponent())
@@ -46,10 +46,13 @@ export class AppComponent implements OnInit {
 
     this.getFormControl('decision')?.valueChanges
       .pipe(
+        distinctUntilChanged(),
+        filter((choice: Choice) => choice !== undefined && choice != null),
         map((choice: Choice) => { return { name: choice.label, key: choice.value }})
       )
-      .subscribe(
-        (decision: Decision) =>  asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.UpdateDecision(decision))));
+      .subscribe((decision: Decision) => {
+        console.log(JSON.stringify(decision));
+      });
   }
 
   getFormControl(name: string) {

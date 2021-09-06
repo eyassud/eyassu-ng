@@ -23,9 +23,9 @@ export class ChoiceComponent implements OnInit, ControlValueAccessor {
 
   constructor() { }
 
-  // setConfiguration(value: ChoiceData): void {
-  //   this.value = value;
-  // }
+  setConfiguration(value: ChoiceData): void {
+    this.value = value;
+  }
 
 
   writeValue(value: any): void {
