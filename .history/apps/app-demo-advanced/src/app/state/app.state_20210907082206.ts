@@ -5,6 +5,8 @@ import { ChoiceData } from "../shared/choice/choice-data";
 import { catchError, map } from 'rxjs/operators';
 import * as AppActionTypes from './app.actions';
 import { combineLatest, of } from "rxjs";
+import { Decision } from "../model/decision";
+import { Country } from "../model/country";
 import { DropDownData } from "../shared/drop-down/drop-down-data";
 import { TextAreaData } from "../shared/text-area/text-area-data";
 
@@ -19,6 +21,12 @@ export interface AppStateModel {
   travelTypeComponentData: ChoiceData;
   destinationComponentData: DropDownData;
   explanationData: TextAreaData;
+  //#endregion
+
+  //#region Form Data
+  // destination: Country | undefined;
+  // travelType: Decision | undefined;
+  // explanation: string | undefined;
   //#endregion
 }
 
@@ -60,6 +68,10 @@ const initialState: AppStateModel = {
   destinationComponentData: _destinationInitialState,
   travelTypeComponentData: _travelTypeInitialState,
   explanationData: _explanationInitialState,
+
+  // destination: undefined,
+  // travelType: undefined,
+  // explanation: undefined
 };
 //#endregion
 
@@ -111,20 +123,15 @@ export class AppState {
     const state = ctx.getState();
 
     ctx.setState({
-      ...state,
+      ...ctx.getState(),
       travelTypeComponentData: {
         ...state.travelTypeComponentData,
-        selectedChoice: undefined
+        selectedChoice: undefined,
       },
       destinationComponentData: {
-         ...state.destinationComponentData,
-         selectedChoice: undefined,
-         configuration : {
-           required: false,
-           visible: false
-         }
-      },
-      explanationData: _explanationInitialState
+        ...state.destinationComponentData,
+        selectedChoice: undefined
+      }
     });
   }
 
@@ -136,10 +143,7 @@ export class AppState {
       ...state,
       travelTypeComponentData: {
         ...state.travelTypeComponentData,
-        selectedChoice: {
-          label: payload.destination.name,
-          value: payload.destination.code
-        }
+        selectedChoice: undefined
       }
     });
   }
@@ -152,7 +156,7 @@ export class AppState {
       ...state,
       explanationData: {
         ...state.explanationData,
-        selectedText: payload.explanation.text
+        selectedText: undefined
       }
     });
   }
@@ -166,10 +170,7 @@ export class AppState {
         ...state,
         travelTypeComponentData: {
           ...state.travelTypeComponentData,
-          selectedChoice: {
-            label: payload.travelType.name,
-            value: payload.travelType.key
-          }
+          selectedChoice: undefined
         },
         destinationComponentData: {
           ...state.destinationComponentData,
@@ -183,20 +184,12 @@ export class AppState {
           configuration: {
             visible: false,
             required: false
-          },
-          selectedText: undefined
+          }
         }
       });
     } else {
       ctx.setState({
         ...state,
-        travelTypeComponentData: {
-          ...state.travelTypeComponentData,
-          selectedChoice: {
-            label: payload.travelType.name,
-            value: payload.travelType.key
-          }
-        },
         destinationComponentData: {
           ...state.destinationComponentData,
           configuration: {
@@ -209,8 +202,7 @@ export class AppState {
           configuration: {
             visible: true,
             required: true
-          },
-          selectedText: undefined
+          }
         }
       });
     }

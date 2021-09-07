@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { Choice } from './choice';
 import { ChoiceData } from './choice-data';
 
 @Component({
@@ -21,7 +22,9 @@ import { ChoiceData } from './choice-data';
 })
 export class ChoiceComponent implements OnInit, ControlValueAccessor, Validator {
   disabled = false;
-  value : Partial<ChoiceData> = {};
+  selectedValue: Choice | undefined;
+
+  value : ChoiceData | undefined;
 
   onChange: any = () => { }
   onTouch: any = () => { }
@@ -45,7 +48,7 @@ export class ChoiceComponent implements OnInit, ControlValueAccessor, Validator 
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    return !this.value?.selectedChoice && this.value?.configuration?.required ? { choice: false} : null;
+    return !this.selectedValue && this.value?.configuration.required ? { choice: false} : null;
   }
 
   ngOnInit(): void {
@@ -53,8 +56,8 @@ export class ChoiceComponent implements OnInit, ControlValueAccessor, Validator 
   }
 
   onChoiceChange(event: any): void {
-    this.value.selectedChoice = this.value?.choices?.find(c => c.value === event.target.value);
-    this.onChange(this.value?.selectedChoice);
+    this.selectedValue = this.value?.choices.find(c => c.value === event.target.value);
+    this.onChange(this.selectedValue);
     this.onTouch();
   }
 }

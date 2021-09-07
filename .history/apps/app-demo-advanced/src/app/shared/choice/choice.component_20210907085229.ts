@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { Choice } from './choice';
 import { ChoiceData } from './choice-data';
 
 @Component({

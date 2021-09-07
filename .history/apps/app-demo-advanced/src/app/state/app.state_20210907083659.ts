@@ -5,6 +5,8 @@ import { ChoiceData } from "../shared/choice/choice-data";
 import { catchError, map } from 'rxjs/operators';
 import * as AppActionTypes from './app.actions';
 import { combineLatest, of } from "rxjs";
+import { Decision } from "../model/decision";
+import { Country } from "../model/country";
 import { DropDownData } from "../shared/drop-down/drop-down-data";
 import { TextAreaData } from "../shared/text-area/text-area-data";
 
@@ -116,14 +118,7 @@ export class AppState {
         ...state.travelTypeComponentData,
         selectedChoice: undefined
       },
-      destinationComponentData: {
-         ...state.destinationComponentData,
-         selectedChoice: undefined,
-         configuration : {
-           required: false,
-           visible: false
-         }
-      },
+      destinationComponentData: _destinationInitialState,
       explanationData: _explanationInitialState
     });
   }

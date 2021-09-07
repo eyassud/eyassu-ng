@@ -1,5 +1,6 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { DropDown } from './drop-down';
 import { DropDownData } from './drop-down-data';
 
 @Component({

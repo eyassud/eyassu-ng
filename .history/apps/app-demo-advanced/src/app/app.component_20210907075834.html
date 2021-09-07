@@ -18,7 +18,7 @@
         </ng-container>
 
         <div class="ml-10 mt-10 border-t pt-5 border-grey-200">
-          <button type="submit" class="btn" [disabled]="!formGroup.valid" (click)="onSave()"
+          <button type="submit" class="btn" [disabled]="!formGroup.valid"
             [ngClass]="{'btn-disabled' : !formGroup.valid}">Save</button>
           <button type="button" class="btn" (click)="onClear()" [disabled]="formGroup.pristine"
             [ngClass]="{'btn-disabled' : formGroup.pristine}">Clear</button>

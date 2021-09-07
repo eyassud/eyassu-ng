@@ -87,8 +87,4 @@ export class AppComponent implements OnInit {
   onClear(): void {
     asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.ResetForm()));
   }
-
-  onSave(): void {
-    alert('Travel plans were saved.');
-  }
 }

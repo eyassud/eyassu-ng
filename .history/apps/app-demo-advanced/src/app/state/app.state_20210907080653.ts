@@ -5,6 +5,8 @@ import { ChoiceData } from "../shared/choice/choice-data";
 import { catchError, map } from 'rxjs/operators';
 import * as AppActionTypes from './app.actions';
 import { combineLatest, of } from "rxjs";
+import { Decision } from "../model/decision";
+import { Country } from "../model/country";
 import { DropDownData } from "../shared/drop-down/drop-down-data";
 import { TextAreaData } from "../shared/text-area/text-area-data";
 
@@ -20,6 +22,12 @@ export interface AppStateModel {
   destinationComponentData: DropDownData;
   explanationData: TextAreaData;
   //#endregion
+
+  //#region Form Data
+  destination: Country | undefined;
+  travelType: Decision | undefined;
+  explanation: string | undefined;
+  //#endregion
 }
 
 //#region Initial state
@@ -29,8 +37,7 @@ const _travelTypeInitialState: ChoiceData = {
     visible: true,
     required: true
   },
-  label: 'Are you traveling domestic or international?',
-  selectedChoice: undefined
+  label: 'Are you traveling domestic or international?'
 };
 
 const _destinationInitialState: DropDownData = {
@@ -39,12 +46,11 @@ const _destinationInitialState: DropDownData = {
     visible: false,
     required: false
   },
-  label: 'Which country?',
-  selectedChoice: undefined
+  label: 'Which country?'
 }
 
 const _explanationInitialState: TextAreaData = {
-  selectedText: '',
+  text: '',
   configuration: {
     visible: false,
     required: false
@@ -60,6 +66,10 @@ const initialState: AppStateModel = {
   destinationComponentData: _destinationInitialState,
   travelTypeComponentData: _travelTypeInitialState,
   explanationData: _explanationInitialState,
+
+  destination: undefined,
+  travelType: undefined,
+  explanation: undefined
 };
 //#endregion
 
@@ -108,52 +118,27 @@ export class AppState {
 
   @Action(AppActionTypes.ResetForm)
   resetForm(ctx: StateContext<AppStateModel>) {
-    const state = ctx.getState();
-
     ctx.setState({
-      ...state,
-      travelTypeComponentData: {
-        ...state.travelTypeComponentData,
-        selectedChoice: undefined
-      },
-      destinationComponentData: {
-         ...state.destinationComponentData,
-         selectedChoice: undefined,
-         configuration : {
-           required: false,
-           visible: false
-         }
-      },
-      explanationData: _explanationInitialState
+      ...ctx.getState(),
+      destination: undefined,
+      travelType: undefined,
+      explanation: ''
     });
   }
 
   @Action(AppActionTypes.UpdateDestination)
   UpdateDestination(ctx: StateContext<AppStateModel>, payload: AppActionTypes.UpdateDestination) {
-    const state = ctx.getState();
-
     ctx.setState({
-      ...state,
-      travelTypeComponentData: {
-        ...state.travelTypeComponentData,
-        selectedChoice: {
-          label: payload.destination.name,
-          value: payload.destination.code
-        }
-      }
+      ...ctx.getState(),
+      destination: payload.destination
     });
   }
 
   @Action(AppActionTypes.UpdateExplanation)
   UpdateExplanation(ctx: StateContext<AppStateModel>, payload: AppActionTypes.UpdateExplanation) {
-    const state = ctx.getState();
-
     ctx.setState({
-      ...state,
-      explanationData: {
-        ...state.explanationData,
-        selectedText: payload.explanation.text
-      }
+      ...ctx.getState(),
+      explanation: payload.explanation.text
     });
   }
 
@@ -164,13 +149,8 @@ export class AppState {
     if (payload.travelType.key === 'international') {
       ctx.setState({
         ...state,
-        travelTypeComponentData: {
-          ...state.travelTypeComponentData,
-          selectedChoice: {
-            label: payload.travelType.name,
-            value: payload.travelType.key
-          }
-        },
+        destination: undefined,
+        travelType: payload.travelType,
         destinationComponentData: {
           ...state.destinationComponentData,
           configuration: {
@@ -183,20 +163,14 @@ export class AppState {
           configuration: {
             visible: false,
             required: false
-          },
-          selectedText: undefined
+          }
         }
       });
     } else {
       ctx.setState({
         ...state,
-        travelTypeComponentData: {
-          ...state.travelTypeComponentData,
-          selectedChoice: {
-            label: payload.travelType.name,
-            value: payload.travelType.key
-          }
-        },
+        destination: undefined,
+        travelType: payload.travelType,
         destinationComponentData: {
           ...state.destinationComponentData,
           configuration: {
@@ -209,8 +183,7 @@ export class AppState {
           configuration: {
             visible: true,
             required: true
-          },
-          selectedText: undefined
+          }
         }
       });
     }

@@ -89,6 +89,6 @@ export class AppComponent implements OnInit {
   }
 
   onSave(): void {
-    alert('Travel plans were saved.');
+    alert(JSON.stringify(this.formGroup));
   }
 }
