@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    alert('Travel plans were saved.');
+    alert('Trip was saved.');
   }
   //#endregion
 
