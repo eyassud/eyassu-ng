@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
@@ -9,7 +8,6 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports:[
-        HttpClientModule,
         ReactiveFormsModule,
         NgxsModule.forRoot([AppState])
       ],

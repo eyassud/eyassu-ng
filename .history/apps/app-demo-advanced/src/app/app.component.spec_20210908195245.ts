@@ -1,17 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgxsModule } from '@ngxs/store';
 import { AppComponent } from './app.component';
-import { AppState } from './state/app.state';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports:[
-        HttpClientModule,
-        ReactiveFormsModule,
-        NgxsModule.forRoot([AppState])
+        ReactiveFormsModule
       ],
       declarations: [AppComponent],
       providers:[]
