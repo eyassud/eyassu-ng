@@ -21,9 +21,9 @@ export interface ViewModel {
     explanationSink$: Observable<TextAreaData>;
   },
   sources: {
-    destinationSource$: Observable<Country> | undefined;
-    travelTypeSource$: Observable<Decision> | undefined;
-    explanationSource$: Observable<TextArea> | undefined;
+    destinationSource$: Observable<any>;
+    travelTypeSource$: Observable<Choice>;
+    explanationSource$: Observable<TextArea>;
   }
 }
 
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   title = 'app-demo-advanced';
   formGroup!: FormGroup;
 
-  viewModel: Partial<ViewModel> = {};
+  viewModel!: ViewModel;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -97,22 +97,16 @@ export class AppComponent implements OnInit {
           })
         ),
 
-      travelTypeSource$: this.getFormControl('travelType')?.valueChanges
+      this.getFormControl('travelType')?.valueChanges
         .pipe(
-          map((choice: Choice) => { return { name: choice.label, key: choice.value } }),
-          map((decision: Decision) => {
-            asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.UpdateTravelType(decision)));
-            return decision;
-          })
-        ),
-
-      explanationSource$: this.getFormControl('explanation')?.valueChanges
-        .pipe(
-          map((textArea: TextArea) => {
-            asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.UpdateExplanation(textArea)));
-            return textArea;
-          })
+          map((choice: Choice) => { return { name: choice.label, key: choice.value } })
         )
+        .subscribe(
+          (decision: Decision) => asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.UpdateTravelType(decision))));
+
+      this.getFormControl('explanation')?.valueChanges
+        .subscribe(
+          (textArea: TextArea) => asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.UpdateExplanation(textArea))));
     }
   }
   //#endregion

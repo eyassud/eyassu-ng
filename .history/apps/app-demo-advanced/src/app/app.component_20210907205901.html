@@ -1,26 +1,19 @@
-<form [formGroup]="formGroup" *ngIf="{
-  destinationSink: viewModel.sinks?.destinationSink$ | async,
-  travelTypeSink: viewModel.sinks?.travelTypeSink$ | async,
-  explanationSink: viewModel.sinks?.explanationSink$ | async,
-  destinationSource: viewModel.sources?.destinationSource$ | async,
-  travelTypeSource: viewModel.sources?.travelTypeSource$ | async,
-  explanationSource: viewModel.sources?.explanationSource$ | async
-} as vm">
+<form [formGroup]="formGroup">
   <div class="container">
 
     <div class="pt-20 pl-32">
       <h3 class="container-label">Example - Advanced</h3>
 
       <div class="border-2 border-grey-200 m-5 p-5 rounded">
-        <ng-container *ngIf="vm.travelTypeSink">
+        <ng-container *ngIf="viewModel.sinks.travelTypeSink$ | async">
           <eyassu-ng-choice formControlName="travelType"></eyassu-ng-choice>
         </ng-container>
 
-        <ng-container *ngIf="vm.destinationSink">
+        <ng-container *ngIf="viewModel.sinks.destinationSink$ | async">
           <eyassu-ng-drop-down formControlName="destination"></eyassu-ng-drop-down>
         </ng-container>
 
-        <ng-container *ngIf="vm.explanationSink">
+        <ng-container *ngIf="viewModel.sinks.explanationSink$ | async">
           <eyassu-ng-text-area formControlName="explanation"></eyassu-ng-text-area>
         </ng-container>
 
@@ -31,7 +24,7 @@
             [ngClass]="{'btn-disabled' : formGroup.pristine}">Clear</button>
         </div>
 
-        <div class="ml-10 mt-10 text-sm" *ngIf="vm.travelTypeSink">
+        <div class="ml-10 mt-10 text-sm" *ngIf="viewModel.travelTypeSink$ | async">
           <code>Valid: {{ formGroup.valid | json}}</code><br />
           <code>Touched: {{ formGroup.touched | json}}</code><br />
           <code>Dirty: {{ formGroup.dirty | json}}</code>

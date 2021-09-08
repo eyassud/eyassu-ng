@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   title = 'app-demo-advanced';
   formGroup!: FormGroup;
 
-  viewModel: Partial<ViewModel> = {};
+  viewModel!: ViewModel;
 
   constructor(
     private readonly fb: FormBuilder,

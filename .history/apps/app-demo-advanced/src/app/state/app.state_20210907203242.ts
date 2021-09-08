@@ -132,16 +132,16 @@ export class AppState {
   UpdateDestination(ctx: StateContext<AppStateModel>, payload: AppActionTypes.UpdateDestination) {
     const state = ctx.getState();
 
-    ctx.setState({
-      ...state,
-      destinationComponentData: {
-        ...state.destinationComponentData,
-        selectedChoice: {
-          label: payload.destination.name,
-          value: payload.destination.code
-        }
-      }
-    });
+    // ctx.setState({
+    //   ...state,
+    //   destinationComponentData: {
+    //     ...state.destinationComponentData,
+    //     selectedChoice: {
+    //       label: payload.destination.name,
+    //       value: payload.destination.code
+    //     }
+    //   }
+    // });
   }
 
   @Action(AppActionTypes.UpdateExplanation)
