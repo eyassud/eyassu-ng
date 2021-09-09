@@ -30,6 +30,6 @@ Primary.args = {
       required: true,
       visible: true
     },
-    selectedChoice: undefined
+    selectedChoice: { label: 'Yes', value: 'Yes' }
   }
 }
