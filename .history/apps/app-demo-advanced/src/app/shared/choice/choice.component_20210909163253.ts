@@ -1,6 +1,5 @@
-/* eslint-disable */
-import { Component, forwardRef } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { Component, OnInit, forwardRef } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { ChoiceData } from './choice-data';
 
 @Component({
@@ -20,16 +19,16 @@ import { ChoiceData } from './choice-data';
     }
   ]
 })
-export class ChoiceComponent implements ControlValueAccessor, Validator {
+export class ChoiceComponent implements OnInit, ControlValueAccessor, Validator {
   disabled = false;
-  value: Partial<ChoiceData> = {};
+  value : Partial<ChoiceData> = {};
 
   onChange: any = () => { }
   onTouch: any = () => { }
 
   constructor() { }
 
-  writeValue(value: ChoiceData): void {
+  writeValue(value: any): void {
     this.value = value;
   }
 
@@ -41,16 +40,16 @@ export class ChoiceComponent implements ControlValueAccessor, Validator {
     this.onTouch = fn
   }
 
-  setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled; this.disabled = isDisabled;
-
-    if (this.value?.configuration) {
-      this.value.configuration.disabled = this.disabled;
-    }
+  setDisabledState?(isDisabled: boolean): void{
+    this.disabled = isDisabled;
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    return !this.value?.selectedChoice && this.value?.configuration?.required ? { choice: false } : null;
+    return !this.value?.selectedChoice && this.value?.configuration?.required ? { choice: false} : null;
+  }
+
+  ngOnInit(): void {
+
   }
 
   onChoiceChange(event: any): void {

@@ -6,7 +6,7 @@
   <ul id="menu" class="m-2">
     <li *ngFor="let choice of value?.choices">
       <input type="radio" name="choice" class="ml-7" value="{{choice.value}}" [checked]="choice.value === value?.selectedChoice?.value"
-        [required]="value?.configuration?.required" (change)="onChoiceChange($event)" [disabled]="value?.configuration?.disabled"/>
+        [required]="value?.configuration?.required" (change)="onChoiceChange($event)" [disabled]="disabled"/>
       <span class="ml-1">{{choice.label}}</span>
     </li>
   </ul>

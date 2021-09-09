@@ -30,7 +30,7 @@ export interface AppStateModel {
 const _travelTypeInitialState: ChoiceData = {
   choices: [],
   configuration: {
-    disabled: false,
+    disabled: true,
     readOnly: false,
     required: true,
     visible: true,
@@ -42,7 +42,7 @@ const _travelTypeInitialState: ChoiceData = {
 const _destinationInitialState: DropDownData = {
   choices: [],
   configuration: {
-    disabled: false,
+    disabled: true,
     readOnly: false,
     visible: false,
     required: false
@@ -54,7 +54,7 @@ const _destinationInitialState: DropDownData = {
 const _explanationInitialState: TextAreaData = {
   selectedText: '',
   configuration: {
-    disabled: false,
+    disabled: true,
     readOnly: false,
     visible: false,
     required: false

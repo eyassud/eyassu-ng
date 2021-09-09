@@ -1,5 +1,4 @@
-/* eslint-disable */
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { DropDownData } from './drop-down-data';
 
@@ -20,7 +19,7 @@ import { DropDownData } from './drop-down-data';
     }
   ]
 })
-export class DropDownComponent implements ControlValueAccessor, Validator {
+export class DropDownComponent implements OnInit, ControlValueAccessor, Validator {
   disabled = false;
   value: Partial<DropDownData> = {};
 
@@ -43,14 +42,14 @@ export class DropDownComponent implements ControlValueAccessor, Validator {
 
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
-
-    if (this.value?.configuration) {
-      this.value.configuration.disabled = this.disabled;
-    }
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    return !this.value.selectedChoice && this.value.configuration?.required ? { choice: false } : null;
+    return !this.value.selectedChoice && this.value.configuration?.required ? { choice: false} : null;
+  }
+
+  ngOnInit(): void {
+
   }
 
   onDropDownChange(event: any): void {

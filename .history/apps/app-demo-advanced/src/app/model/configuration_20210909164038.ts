@@ -1,5 +1,5 @@
 export interface Configuration {
-  disabled: boolean;
+  enabled: boolean;
   readOnly: boolean;
   required: boolean;
   visible: boolean;

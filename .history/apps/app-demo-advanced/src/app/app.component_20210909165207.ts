@@ -60,14 +60,15 @@ export class AppComponent implements OnInit {
     this.initializeSources();
   }
 
-  onResetForm(): void {
+  onClear(): void {
     asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.ResetTravelForm()));
-    this.formGroup.markAsPristine();
+    this.formGroup.reset();
+    this.formGroup.updateValueAndValidity();
   }
 
-  onSaveForm(): void {
+  onSave(): void {
     asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.SaveTravelForm()));
-    this.onResetForm();
+    asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.ResetTravelForm()));
   }
 
   //#region Private methods
