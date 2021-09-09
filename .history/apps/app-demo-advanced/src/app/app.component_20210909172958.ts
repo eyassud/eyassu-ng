@@ -104,6 +104,7 @@ export class AppComponent implements OnInit {
           map((dropDown: DropDown) => { return { name: dropDown.label, code: dropDown.value } }),
           tap((country: Country) => {
             asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.SetDestination(country)));
+            //return country;
           })
         ),
 
@@ -112,6 +113,7 @@ export class AppComponent implements OnInit {
           map((choice: Choice) => { return { name: choice.label, key: choice.value } }),
           tap((decision: Decision) => {
             asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.SetTravelType(decision)));
+            //return decision;
           })
         ),
 
@@ -119,6 +121,7 @@ export class AppComponent implements OnInit {
         .pipe(
           tap((textArea: TextArea) => {
             asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.SetTravelExplanation(textArea)));
+            //return textArea;
           })
         )
     }
