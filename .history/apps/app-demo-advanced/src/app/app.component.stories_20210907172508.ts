@@ -1,4 +1,3 @@
-import { ReactiveFormsModule } from '@angular/forms';
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { AppComponent } from './app.component';
 
@@ -7,9 +6,7 @@ export default {
   component: AppComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        ReactiveFormsModule
-      ],
+      imports: [],
     })
   ],
 } as Meta<AppComponent>;
