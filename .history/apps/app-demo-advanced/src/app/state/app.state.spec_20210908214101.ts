@@ -55,6 +55,7 @@ describe('App', () => {
   });
 
   it('should load lookups', async () => {
+    //await store.dispatch(new AppActionTypes.Load()).toPromise();
 
     const app = store.selectSnapshot(state => state.app);
 
@@ -64,7 +65,7 @@ describe('App', () => {
 
   it('should be domestic travel type', async () => {
     const travelType = { "name": "Domestic", "key": "Domestic" };
-
+    //await store.dispatch(new AppActionTypes.Load()).toPromise();
     await store.dispatch(new AppActionTypes.UpdateTravelType(travelType)).toPromise();
 
     const app = store.selectSnapshot(state => state.app);
@@ -74,7 +75,7 @@ describe('App', () => {
 
   it('should be Afghanistan destination', async () => {
     const country = { "name": "Afghanistan", "code": "AF" };
-
+    //await store.dispatch(new AppActionTypes.Load()).toPromise();
     await store.dispatch(new AppActionTypes.UpdateDestination(country)).toPromise();
 
     const app = store.selectSnapshot(state => state.app);
