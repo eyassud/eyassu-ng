@@ -126,15 +126,7 @@ export class AppState {
         ...state.travelTypeComponentData,
         selectedChoice: undefined
       },
-      destinationComponentData: {
-        ...state.destinationComponentData,
-        selectedChoice: undefined,
-        configuration: {
-          ...state.destinationComponentData.configuration,
-          required: false,
-          visible: false
-        }
-      },
+      destinationComponentData: _destinationInitialState,
       explanationData: _explanationInitialState,
     });
   }

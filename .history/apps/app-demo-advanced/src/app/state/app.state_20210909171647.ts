@@ -122,19 +122,8 @@ export class AppState {
     ctx.setState({
       ...state,
       appData: _appDataInitialState,
-      travelTypeComponentData: {
-        ...state.travelTypeComponentData,
-        selectedChoice: undefined
-      },
-      destinationComponentData: {
-        ...state.destinationComponentData,
-        selectedChoice: undefined,
-        configuration: {
-          ...state.destinationComponentData.configuration,
-          required: false,
-          visible: false
-        }
-      },
+      travelTypeComponentData: _travelTypeInitialState,
+      destinationComponentData: _destinationInitialState,
       explanationData: _explanationInitialState,
     });
   }
