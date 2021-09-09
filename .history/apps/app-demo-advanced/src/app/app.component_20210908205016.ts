@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { MessageService } from 'primeng/api';
 import { asapScheduler, Observable } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import * as AppActionTypes from '../app/state/app.actions';
 import { Country } from './model/country';
 import { Decision } from './model/decision';
@@ -20,7 +20,7 @@ export interface ViewModel {
     destinationSink$: Observable<DropDownData>;
     travelTypeSink$: Observable<ChoiceData>;
     explanationSink$: Observable<TextAreaData>;
-    toastMessagesSink$: Observable<boolean>;
+    toastMessages$: Observable<boolean>;
   },
   sources: {
     destinationSource$: Observable<Country> | undefined;
@@ -65,8 +65,7 @@ export class AppComponent implements OnInit {
   }
 
   onSave(): void {
-    asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.SaveTravelForm()));
-    asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.ResetTravelForm()));
+    alert('Travel plans were saved.');
   }
 
   //#region Private methods
@@ -88,10 +87,9 @@ export class AppComponent implements OnInit {
         .pipe(
           tap((textAreaData: TextAreaData) => this.getFormControl('explanation')?.setValue(textAreaData, { emitEvent: false }))
         ),
-      toastMessagesSink$: this.store.select(AppSelectors.getTripFormSaved())
+      toastMessages$: this.store.select(AppSelectors.getTripFormSaved())
         .pipe(
-          filter(saved => saved === true),
-          tap(() => this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: 'Your travel plans were saved.' }))
+          tap(() => this.messageService.add({severity:'success', summary: 'Success', detail: 'Your travel plans were saved.'}))
         )
     }
   }

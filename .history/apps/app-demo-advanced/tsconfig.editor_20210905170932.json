@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["**/*.ts", "src/app/model/travel-formts"],
+  "include": ["**/*.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }

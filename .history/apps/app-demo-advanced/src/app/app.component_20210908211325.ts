@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { MessageService } from 'primeng/api';
 import { asapScheduler, Observable } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import * as AppActionTypes from '../app/state/app.actions';
 import { Country } from './model/country';
 import { Decision } from './model/decision';
@@ -66,7 +66,6 @@ export class AppComponent implements OnInit {
 
   onSave(): void {
     asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.SaveTravelForm()));
-    asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.ResetTravelForm()));
   }
 
   //#region Private methods
@@ -90,7 +89,6 @@ export class AppComponent implements OnInit {
         ),
       toastMessagesSink$: this.store.select(AppSelectors.getTripFormSaved())
         .pipe(
-          filter(saved => saved === true),
           tap(() => this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: 'Your travel plans were saved.' }))
         )
     }

@@ -30,6 +30,7 @@
             [ngClass]="{'btn-disabled' : !formGroup.valid}">Save</button>
           <button type="button" class="btn" (click)="onClear()" [disabled]="formGroup.pristine"
             [ngClass]="{'btn-disabled' : formGroup.pristine}">Clear</button>
+            <div class="text-green-600 italic">Travel plans saved!</div>
         </div>
 
         <div class="ml-10 mt-10 text-sm" *ngIf="vm.travelTypeSink">
@@ -43,4 +44,4 @@
   </div>
 
 </form>
-<p-toast position="top-left" key="tl"></p-toast>
+<p-toast></p-toast>

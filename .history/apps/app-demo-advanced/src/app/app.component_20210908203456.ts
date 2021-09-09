@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { MessageService } from 'primeng/api';
 import { asapScheduler, Observable } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import * as AppActionTypes from '../app/state/app.actions';
 import { Country } from './model/country';
 import { Decision } from './model/decision';
@@ -20,7 +19,6 @@ export interface ViewModel {
     destinationSink$: Observable<DropDownData>;
     travelTypeSink$: Observable<ChoiceData>;
     explanationSink$: Observable<TextAreaData>;
-    toastMessagesSink$: Observable<boolean>;
   },
   sources: {
     destinationSource$: Observable<Country> | undefined;
@@ -32,8 +30,7 @@ export interface ViewModel {
 @Component({
   selector: 'eyassu-ng-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [MessageService]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'app-demo-advanced';
@@ -43,8 +40,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly store: Store,
-    private readonly messageService: MessageService) { }
+    private readonly store: Store) { }
 
   ngOnInit(): void {
 
@@ -60,20 +56,19 @@ export class AppComponent implements OnInit {
     this.initializeSources();
   }
 
+  getFormControl(name: string) {
+    return this.formGroup.get(name);
+  }
+
   onClear(): void {
     asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.ResetTravelForm()));
   }
 
   onSave(): void {
-    asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.SaveTravelForm()));
-    asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.ResetTravelForm()));
+    alert('Travel plans were saved.');
   }
 
   //#region Private methods
-  getFormControl(name: string) {
-    return this.formGroup.get(name);
-  }
-
   private initializeSinks(): void {
     this.viewModel.sinks = {
       destinationSink$: this.store.select(AppSelectors.getTravelDestinationComponent())
@@ -87,11 +82,6 @@ export class AppComponent implements OnInit {
       explanationSink$: this.store.select(AppSelectors.getExplanationComponent())
         .pipe(
           tap((textAreaData: TextAreaData) => this.getFormControl('explanation')?.setValue(textAreaData, { emitEvent: false }))
-        ),
-      toastMessagesSink$: this.store.select(AppSelectors.getTripFormSaved())
-        .pipe(
-          filter(saved => saved === true),
-          tap(() => this.messageService.add({ key: 'tl', severity: 'success', summary: 'Success', detail: 'Your travel plans were saved.' }))
         )
     }
   }

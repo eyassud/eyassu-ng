@@ -9,7 +9,6 @@ import { DropDownData } from "../shared/drop-down/drop-down-data";
 import { TextAreaData } from "../shared/text-area/text-area-data";
 import { TravelForm } from "../model/travel-form";
 import { Decision } from "../model/decision";
-import { Country } from "../model/country";
 
 export interface AppStateModel {
   //#region
@@ -148,7 +147,7 @@ export class AppState {
       key: state.travelTypeComponentData?.selectedChoice?.value as string,
       name: state.travelTypeComponentData?.selectedChoice?.label as string
     };
-    const destination: Country | undefined = state.destinationComponentData.selectedChoice?.value ? {
+    const destination = state.destinationComponentData.selectedChoice?.value ? {
       code: state.destinationComponentData.selectedChoice?.value as string,
       name: state.destinationComponentData.selectedChoice?.label as string,
     } : undefined;
@@ -223,7 +222,7 @@ export class AppState {
           visible: !isInternational,
           required: !isInternational
         },
-        selectedText: ''
+        selectedText: undefined
       }
     });
   }
