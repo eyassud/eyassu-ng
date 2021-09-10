@@ -12,9 +12,10 @@ import { DropDownComponent } from './shared/drop-down/drop-down.component';
 import { TextAreaComponent } from './shared/text-area/text-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastModule} from 'primeng/toast';
+import { TravelRequirementsComponent } from './travel-requirements/travel-requirements.component';
 
 @NgModule({
-  declarations: [AppComponent, ChoiceComponent, DropDownComponent, TextAreaComponent],
+  declarations: [AppComponent, ChoiceComponent, DropDownComponent, TextAreaComponent, TravelRequirementsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

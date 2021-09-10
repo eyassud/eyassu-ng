@@ -28,7 +28,7 @@ export class AppSelectors {
   }
 
   //#region Extra
-  static getTravelRequirementComponent() {
+  static getTravelRequirementsComponent() {
     return createSelector([AppState], (state: AppStateModel) => {
       return state.travelRequirementComponentData;
     });

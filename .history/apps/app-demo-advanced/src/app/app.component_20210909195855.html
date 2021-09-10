@@ -22,13 +22,14 @@
           <eyassu-ng-drop-down formControlName="destination"></eyassu-ng-drop-down>
         </ng-container>
 
-        <ng-container *ngIf="vm.travelRequirementsSink">
-          <eyassu-ng-travel-requirements formControlName="travelRequirements"></eyassu-ng-travel-requirements>
-        </ng-container>
-
         <ng-container *ngIf="vm.explanationSink">
           <eyassu-ng-text-area formControlName="explanation"></eyassu-ng-text-area>
         </ng-container>
+
+          <eyassu-ng-travel-requirements formControlName="travelRequirements"></eyassu-ng-travel-requirements>
+ >
+
+
 
         <div class="ml-10 mt-10 border-t pt-5 border-grey-200">
           <button type="submit" class="btn" [disabled]="!formGroup.valid" (click)="onSaveForm()"

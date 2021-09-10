@@ -78,7 +78,7 @@ const _travelRequirementsInitialState: TravelRequirementsData = {
     visible: false,
     required: false
   },
-  requirement: undefined
+  requirement: []
 }
 
 const initialState: AppStateModel = {

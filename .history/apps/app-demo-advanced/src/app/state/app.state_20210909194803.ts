@@ -78,7 +78,7 @@ const _travelRequirementsInitialState: TravelRequirementsData = {
     visible: false,
     required: false
   },
-  requirement: undefined
+  requirement: []
 }
 
 const initialState: AppStateModel = {
@@ -206,7 +206,7 @@ export class AppState {
             true : false
         },
         requirement: SAMPLE_TRAVEL_REQUIREMENTS.findIndex(r => r.countryCode === payload.destination.code) != -1 ?
-          SAMPLE_TRAVEL_REQUIREMENTS.find(r => r.countryCode === payload.destination.code) as TravelRequirement : undefined
+          SAMPLE_TRAVEL_REQUIREMENTS.find(r => r.countryCode === payload.destination.code) as TravelRequirement : {}
       }
       //#endregion
     });

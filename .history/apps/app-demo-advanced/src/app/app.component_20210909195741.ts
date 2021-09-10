@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
       travelType: new FormControl(undefined),
       destination: new FormControl(undefined),
       explanation: new FormControl(undefined),
-      travelRequirements: new FormControl(undefined)
+      //travelRequirements: new FormControl(undefined)
     });
 
     asapScheduler.schedule(() => this.store.dispatch(new AppActionTypes.LoadLookups()));

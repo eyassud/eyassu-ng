@@ -1,0 +1,8 @@
+<div class="ml-10 mt-10 text-yellow-400" *ngIf="value?.requirement?.requirements">
+  <div class="ml-3 -mt-10 text-xs italic">Travel Requirements</div>
+  <p *ngFor="let travelRequirement of value?.requirement?.requirements" class="ml-5 text-xs italic">
+    - {{ travelRequirement }}
+  </p>
+</div>
+
+

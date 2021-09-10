@@ -12,8 +12,6 @@ import { Decision } from "../model/decision";
 import { Country } from "../model/country";
 import { AppData } from "./app-data";
 import { TravelRequirementsData } from "../travel-requirements/travel-requirements-data";
-import { SAMPLE_TRAVEL_REQUIREMENTS } from "./sample-travel-requirements";
-import { TravelRequirement } from "../model/travel-requirement";
 
 export interface AppStateModel {
   //#region Components
@@ -71,25 +69,11 @@ const _explanationInitialState: TextAreaData = {
   label: 'Please describe where you are going domestically'
 }
 
-const _travelRequirementsInitialState: TravelRequirementsData = {
-  configuration: {
-    disabled: false,
-    readOnly: false,
-    visible: false,
-    required: false
-  },
-  requirement: undefined
-}
-
 const initialState: AppStateModel = {
   appData: _appDataInitialState,
   destinationComponentData: _destinationInitialState,
   travelTypeComponentData: _travelTypeInitialState,
   explanationData: _explanationInitialState,
-
-  //#region Extra
-  travelRequirementComponentData: _travelRequirementsInitialState
-  //#endregion
 };
 //#endregion
 
@@ -195,20 +179,6 @@ export class AppState {
           value: payload.destination.code
         }
       }
-
-      //#region Extra
-      ,
-      travelRequirementComponentData: {
-        ...state.travelRequirementComponentData,
-        configuration: {
-          ...state.travelRequirementComponentData.configuration,
-          visible: SAMPLE_TRAVEL_REQUIREMENTS.findIndex(r => r.countryCode === payload.destination.code) != -1 ?
-            true : false
-        },
-        requirement: SAMPLE_TRAVEL_REQUIREMENTS.findIndex(r => r.countryCode === payload.destination.code) != -1 ?
-          SAMPLE_TRAVEL_REQUIREMENTS.find(r => r.countryCode === payload.destination.code) as TravelRequirement : undefined
-      }
-      //#endregion
     });
   }
 

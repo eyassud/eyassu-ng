@@ -1,0 +1,7 @@
+<div class="ml-10 mt-10" *ngIf="value?.requirements">
+  <span *ngFor="let travelRequirement of value?.requirements">
+    {{ travelRequirement }}
+  </span>
+</div>
+
+{{ value | json }}

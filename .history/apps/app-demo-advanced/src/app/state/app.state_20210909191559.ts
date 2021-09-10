@@ -13,7 +13,6 @@ import { Country } from "../model/country";
 import { AppData } from "./app-data";
 import { TravelRequirementsData } from "../travel-requirements/travel-requirements-data";
 import { SAMPLE_TRAVEL_REQUIREMENTS } from "./sample-travel-requirements";
-import { TravelRequirement } from "../model/travel-requirement";
 
 export interface AppStateModel {
   //#region Components
@@ -78,7 +77,7 @@ const _travelRequirementsInitialState: TravelRequirementsData = {
     visible: false,
     required: false
   },
-  requirement: undefined
+  requirements: []
 }
 
 const initialState: AppStateModel = {
@@ -124,6 +123,12 @@ export class AppState {
               ...state.destinationComponentData,
               choices: countries
             }
+            //#region Extra
+            , travelRequirementComponentData: {
+              ...state.travelRequirementComponentData,
+              requirements: SAMPLE_TRAVEL_REQUIREMENTS
+            }
+            //#endregion
           });
         }),
         catchError(() => {
@@ -195,20 +200,6 @@ export class AppState {
           value: payload.destination.code
         }
       }
-
-      //#region Extra
-      ,
-      travelRequirementComponentData: {
-        ...state.travelRequirementComponentData,
-        configuration: {
-          ...state.travelRequirementComponentData.configuration,
-          visible: SAMPLE_TRAVEL_REQUIREMENTS.findIndex(r => r.countryCode === payload.destination.code) != -1 ?
-            true : false
-        },
-        requirement: SAMPLE_TRAVEL_REQUIREMENTS.findIndex(r => r.countryCode === payload.destination.code) != -1 ?
-          SAMPLE_TRAVEL_REQUIREMENTS.find(r => r.countryCode === payload.destination.code) as TravelRequirement : undefined
-      }
-      //#endregion
     });
   }
 
