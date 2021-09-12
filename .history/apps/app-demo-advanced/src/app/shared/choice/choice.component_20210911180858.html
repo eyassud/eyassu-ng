@@ -5,7 +5,7 @@
   </div>
   <ul id="menu" class="m-2" data-test="choice-radio-buttons">
     <li *ngFor="let choice of value?.choices">
-      <input [attr.data-test]="'option-' + choice.value" type="radio" name="choice" class="ml-7" value="{{choice.value}}" [checked]="choice.value === value?.selectedChoice?.value"
+      <input [attr.data-test]="choice.value" type="radio" name="choice" class="ml-7" value="{{choice.value}}" [checked]="choice.value === value?.selectedChoice?.value"
         [required]="value?.configuration?.required" (change)="onChoiceChange($event)" [disabled]="value?.configuration?.disabled"/>
       <span class="ml-1">{{choice.label}}</span>
     </li>

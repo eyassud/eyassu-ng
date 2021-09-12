@@ -4,7 +4,7 @@ import { ChoiceComponent } from './choice.component';
 describe('ChoiceComponent', () => {
   let component: ChoiceComponent;
   let fixture: ComponentFixture<ChoiceComponent>;
-  let value = {
+  const value = {
     choices: [
       { label: 'Yes', value: 'Yes' },
       { label: 'No', value: 'No' },
@@ -19,32 +19,19 @@ describe('ChoiceComponent', () => {
     selectedChoice: undefined
   };
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     await TestBed.configureTestingModule({
       declarations: [ChoiceComponent]
     })
       .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(ChoiceComponent);
     component = fixture.componentInstance;
     component.writeValue(value);
     fixture.detectChanges();
   });
-
-  afterEach(() => value = {
-    choices: [
-      { label: 'Yes', value: 'Yes' },
-      { label: 'No', value: 'No' },
-      { label: 'N/A', value: 'N/A' }],
-    label: 'Do you want to take a trip?',
-    configuration: {
-      disabled: false,
-      readOnly: false,
-      required: true,
-      visible: true
-    },
-    selectedChoice: undefined
-  })
 
   it(`should have ${value.choices.length} radio buttons`, () => {
     const compiled = fixture.debugElement.nativeElement;
@@ -68,7 +55,7 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeTruthy();
   });
 
-  it('should not have a red asterisk visible when input is not required', () => {
+  it('should not have a red asterisk when not required', () => {
     const compiled = fixture.debugElement.nativeElement;
     component.writeValue({
       ...value,
@@ -83,34 +70,14 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeFalsy();
   });
 
-  it('should only have one radio button checked at a time', () => {
+  it('should only have one radio button checked', () => {
     const compiled = fixture.debugElement.nativeElement;
-    const radioButtons: NodeList = compiled.querySelectorAll('[data-test^="option"]');
-
-    (<HTMLInputElement>radioButtons?.item(0)).click();
+    const yesRadioElement = compiled.querySelector('[data-test="Yes"]');
+    const noRadioElement = compiled.querySelector('[data-test="No"]');
+    yesRadioElement.click();
     fixture.detectChanges();
 
-    let count = 0;
-
-    radioButtons.forEach((node) => {
-      const radioButton = <HTMLInputElement>node;
-
-      if (radioButton.checked) {
-        count++;
-      }
-    });
-
-    expect(count).toBe(1);
-  });
-
-  it('should call method onChoiceChange(event: any) when a radio button is checked', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    const radioButtons = compiled.querySelectorAll('[data-test^="option"]');
-    jest.spyOn(component, 'onChoiceChange');
-
-    (<HTMLInputElement>radioButtons?.item(0)).click();
-    fixture.detectChanges();
-
-    expect(component.onChoiceChange).toHaveBeenCalled();
+    expect(yesRadioElement.checked).toBeTruthy();
+    expect(noRadioElement.checked).toBeFalsy();
   });
 });

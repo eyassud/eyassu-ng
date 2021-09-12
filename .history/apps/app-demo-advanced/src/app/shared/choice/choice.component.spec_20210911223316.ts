@@ -4,7 +4,7 @@ import { ChoiceComponent } from './choice.component';
 describe('ChoiceComponent', () => {
   let component: ChoiceComponent;
   let fixture: ComponentFixture<ChoiceComponent>;
-  let value = {
+  const value = {
     choices: [
       { label: 'Yes', value: 'Yes' },
       { label: 'No', value: 'No' },
@@ -31,21 +31,6 @@ describe('ChoiceComponent', () => {
     fixture.detectChanges();
   });
 
-  afterEach(() => value = {
-    choices: [
-      { label: 'Yes', value: 'Yes' },
-      { label: 'No', value: 'No' },
-      { label: 'N/A', value: 'N/A' }],
-    label: 'Do you want to take a trip?',
-    configuration: {
-      disabled: false,
-      readOnly: false,
-      required: true,
-      visible: true
-    },
-    selectedChoice: undefined
-  })
-
   it(`should have ${value.choices.length} radio buttons`, () => {
     const compiled = fixture.debugElement.nativeElement;
     const radioButtons = compiled.querySelectorAll('input[type="radio"]');
@@ -68,7 +53,7 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeTruthy();
   });
 
-  it('should not have a red asterisk visible when input is not required', () => {
+  it('should not have a red asterisk visible when not required', () => {
     const compiled = fixture.debugElement.nativeElement;
     component.writeValue({
       ...value,
@@ -83,7 +68,7 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeFalsy();
   });
 
-  it('should only have one radio button checked at a time', () => {
+  it('should only have one radio button checked', () => {
     const compiled = fixture.debugElement.nativeElement;
     const radioButtons: NodeList = compiled.querySelectorAll('[data-test^="option"]');
 
@@ -107,6 +92,7 @@ describe('ChoiceComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     const radioButtons = compiled.querySelectorAll('[data-test^="option"]');
     jest.spyOn(component, 'onChoiceChange');
+    value.selectedChoice = undefined;
 
     (<HTMLInputElement>radioButtons?.item(0)).click();
     fixture.detectChanges();

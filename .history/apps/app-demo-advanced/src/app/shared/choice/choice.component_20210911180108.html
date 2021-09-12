@@ -1,11 +1,11 @@
 <div class="ml-10 mt-10" *ngIf="value?.configuration?.visible">
   <div class="font-medium italic">
-    <label data-test="choice-label" data-label for="choice">{{ value?.label }}</label>
+    <label data-label for="choice">{{ value?.label }}</label>
     <span data-required class="text-red-600 pl-2" *ngIf="value?.configuration?.required" data-test="choice-asterisk">*</span>
   </div>
   <ul id="menu" class="m-2" data-test="choice-radio-buttons">
     <li *ngFor="let choice of value?.choices">
-      <input [attr.data-test]="'option-' + choice.value" type="radio" name="choice" class="ml-7" value="{{choice.value}}" [checked]="choice.value === value?.selectedChoice?.value"
+      <input [attr.data-test]="choice.value" type="radio" name="choice" class="ml-7" value="{{choice.value}}" [checked]="choice.value === value?.selectedChoice?.value"
         [required]="value?.configuration?.required" (change)="onChoiceChange($event)" [disabled]="value?.configuration?.disabled"/>
       <span class="ml-1">{{choice.label}}</span>
     </li>

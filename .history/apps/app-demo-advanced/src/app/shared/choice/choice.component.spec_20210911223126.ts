@@ -4,20 +4,6 @@ import { ChoiceComponent } from './choice.component';
 describe('ChoiceComponent', () => {
   let component: ChoiceComponent;
   let fixture: ComponentFixture<ChoiceComponent>;
-  let value = {
-    choices: [
-      { label: 'Yes', value: 'Yes' },
-      { label: 'No', value: 'No' },
-      { label: 'N/A', value: 'N/A' }],
-    label: 'Do you want to take a trip?',
-    configuration: {
-      disabled: false,
-      readOnly: false,
-      required: true,
-      visible: true
-    },
-    selectedChoice: undefined
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,35 +11,34 @@ describe('ChoiceComponent', () => {
     })
       .compileComponents();
 
+    const value = {
+      choices: [
+        { label: 'Yes', value: 'Yes' },
+        { label: 'No', value: 'No' },
+        { label: 'N/A', value: 'N/A' }],
+      label: 'Do you want to take a trip?',
+      configuration: {
+        disabled: false,
+        readOnly: false,
+        required: true,
+        visible: true
+      },
+      selectedChoice: undefined
+    };
     fixture = TestBed.createComponent(ChoiceComponent);
     component = fixture.componentInstance;
     component.writeValue(value);
     fixture.detectChanges();
   });
 
-  afterEach(() => value = {
-    choices: [
-      { label: 'Yes', value: 'Yes' },
-      { label: 'No', value: 'No' },
-      { label: 'N/A', value: 'N/A' }],
-    label: 'Do you want to take a trip?',
-    configuration: {
-      disabled: false,
-      readOnly: false,
-      required: true,
-      visible: true
-    },
-    selectedChoice: undefined
-  })
-
-  it(`should have ${value.choices.length} radio buttons`, () => {
+  it(`should have three radio buttons`, () => {
     const compiled = fixture.debugElement.nativeElement;
     const radioButtons = compiled.querySelectorAll('input[type="radio"]');
 
     expect(radioButtons.length).toBe(value.choices.length);
   });
 
-  it(`should have the label "${value.label}"`, () => {
+  it(`should have the label "Do you want to take a trip?"`, () => {
     const compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
     const asteriskElement: HTMLLabelElement = compiled.querySelector('[data-test="choice-label"]');
@@ -68,7 +53,7 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeTruthy();
   });
 
-  it('should not have a red asterisk visible when input is not required', () => {
+  it('should not have a red asterisk visible when not required', () => {
     const compiled = fixture.debugElement.nativeElement;
     component.writeValue({
       ...value,
@@ -83,7 +68,7 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeFalsy();
   });
 
-  it('should only have one radio button checked at a time', () => {
+  it('should only have one radio button checked', () => {
     const compiled = fixture.debugElement.nativeElement;
     const radioButtons: NodeList = compiled.querySelectorAll('[data-test^="option"]');
 

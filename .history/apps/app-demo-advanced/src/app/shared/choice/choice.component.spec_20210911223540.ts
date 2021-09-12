@@ -68,7 +68,7 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeTruthy();
   });
 
-  it('should not have a red asterisk visible when input is not required', () => {
+  it('should not have a red asterisk visible when not required', () => {
     const compiled = fixture.debugElement.nativeElement;
     component.writeValue({
       ...value,
@@ -83,7 +83,7 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeFalsy();
   });
 
-  it('should only have one radio button checked at a time', () => {
+  it('should only have one radio button checked', () => {
     const compiled = fixture.debugElement.nativeElement;
     const radioButtons: NodeList = compiled.querySelectorAll('[data-test^="option"]');
 

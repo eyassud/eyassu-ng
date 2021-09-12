@@ -83,7 +83,7 @@ describe('ChoiceComponent', () => {
     expect(asteriskElement).toBeFalsy();
   });
 
-  it('should only have one radio button checked at a time', () => {
+  it('should only have one radio button checked', () => {
     const compiled = fixture.debugElement.nativeElement;
     const radioButtons: NodeList = compiled.querySelectorAll('[data-test^="option"]');
 
